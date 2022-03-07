@@ -8,3 +8,4 @@ def handler_user_theme_setting_create(sender, instance, created, **kwargs):
 
     if created:
         UserThemeSetting.objects.create(user=instance)
+        
