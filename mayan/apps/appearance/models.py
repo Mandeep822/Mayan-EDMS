@@ -30,8 +30,8 @@ class Theme(ExtraDataModelMixin, models.Model):
     #add color code to model
 
     logoLink = models.CharField(
-        db_index=True, help_text=_('Logo Link.'),
-        max_length=300, unique=True, verbose_name=_('Logo Link')
+        db_index=True, help_text=_('Logo link URL.'),
+        max_length=2000, unique=True, verbose_name=_('Logo Link URL')
     )
 
     mmColor = RGBColorField(
@@ -122,11 +122,12 @@ class Theme(ExtraDataModelMixin, models.Model):
 
         /* Logo Link */
 
-        img.web-logo{{
+        img.logo {{
             background-image: url("{logoLink}");
             background-size: 150px;
             background-repeat: no-repeat;
         }}
+
 
         /* First Main menu color */
         
