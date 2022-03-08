@@ -2,8 +2,11 @@
 
 {% load navigation_tags %}
 {% load smart_settings_tags %}
+{% load appearance_tags %}
 
 {% spaceless %}
+
+
 
     
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -16,8 +19,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{% url home_view %}">
-                    <img src="data:image/gif; base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
-                    class="logo" style="width: 250%; height: 250%; margin-top: -18px;" alt="">
+                    <img src="{% appearance_get_logo_stylesheet %}" 
+                    class="logo" style="max-width: 250%; max-height: 250%; margin-top: -16px" alt="">
                 </a>
 
             </div>

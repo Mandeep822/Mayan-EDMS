@@ -7,6 +7,7 @@ from django.template.loader import get_template
 from django.utils.module_loading import import_string
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
+from django.db import models
 
 from ..literals import COMMENT_APP_TEMPLATE_CACHE_DISABLE
 
@@ -103,21 +104,6 @@ def appearance_get_user_theme_stylesheet(user):
     # return ''
 
 @register.simple_tag
-def appearance_import_fonts():
-    CurrentTheme = apps.get_model(
-        app_label='appearance', model_name='CurrentTheme'
-    )
-    try:
-        font = CurrentTheme.objects.first().theme.font
-        font = font.replace(' ','+')
-    except:
-        return ''
-    
-    if font == 'default':
-        return ''
-    return mark_safe(f"""<link href="https://fonts.googleapis.com/css2?family={font}&display=swap" rel="stylesheet">""")
-
-@register.simple_tag
 def appearance_icon_render(icon, enable_shadow=False):
     return icon.render(extra_context={'enable_shadow': enable_shadow})
 
@@ -128,3 +114,18 @@ def appearance_object_list_count(object_list):
         return object_list.count()
     except TypeError:
         return len(object_list)
+
+
+@register.simple_tag
+def appearance_get_logo_stylesheet():
+    ## try to run CurrentTheme
+    CurrentTheme = apps.get_model(
+        app_label='appearance', model_name='CurrentTheme'
+    )
+
+    try:
+        currentLogoStylesheet = CurrentTheme.objects.first().theme.logoLink
+    except:
+        return ''
+    
+    return mark_safe(currentLogoStylesheet)

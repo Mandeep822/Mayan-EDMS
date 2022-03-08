@@ -26,7 +26,6 @@ class Theme(ExtraDataModelMixin, models.Model):
         db_index=True, help_text=_('A short text describing the theme.'),
         max_length=128, unique=True, verbose_name=_('Label')
     )
-
     #add color code to model
 
     logoLink = models.CharField(
@@ -116,18 +115,8 @@ class Theme(ExtraDataModelMixin, models.Model):
         bgColor = self.bgColor
         bdtColor = self.bdtColor
         frameColor = self.frameColor
-        logoLink = self.logoLink
         
         css = f"""
-
-        /* Logo Link */
-
-        img.logo {{
-            background-image: url("{logoLink}");
-            background-size: 150px;
-            background-repeat: no-repeat;
-        }}
-
 
         /* First Main menu color */
         
@@ -330,7 +319,7 @@ class Theme(ExtraDataModelMixin, models.Model):
         div.well {{
             background: {frameColor};
         }}
-
+        
         """
         self.stylesheet = css
         super().save(*args, **kwargs)
@@ -369,3 +358,4 @@ class CurrentTheme(models.Model):
     def save(self, *args, **kwargs):
         self.__class__.objects.exclude(id=self.id).delete()
         super().save(*args, **kwargs)
+
