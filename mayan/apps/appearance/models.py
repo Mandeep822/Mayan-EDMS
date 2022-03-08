@@ -319,7 +319,7 @@ class Theme(ExtraDataModelMixin, models.Model):
         div.well {{
             background: {frameColor};
         }}
-        
+
         """
         self.stylesheet = css
         super().save(*args, **kwargs)

@@ -129,3 +129,4 @@ def appearance_get_logo_stylesheet():
         return ''
     
     return mark_safe(currentLogoStylesheet)
+
