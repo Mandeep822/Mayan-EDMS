@@ -130,3 +130,19 @@ def appearance_get_logo_stylesheet():
     
     return mark_safe(currentLogoStylesheet)
 
+
+
+@register.simple_tag
+def appearance_get_fonts():
+    ## try to run CurrentTheme
+    CurrentTheme = apps.get_model(
+        app_label='appearance', model_name='CurrentTheme'
+    )
+
+    try:
+        currentFontStylesheet = CurrentTheme.objects.first().theme.font
+        currentFontStylesheet = currentFontStylesheet.replace(' ','+')
+    except:
+        return ''
+    
+    return mark_safe(f"""<link href="https://fonts.googleapis.com/css2?family={currentFontStylesheet}&display=swap" rel="stylesheet">""")

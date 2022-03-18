@@ -7,7 +7,7 @@ from .models import Theme, UserThemeSetting ,CurrentTheme #add CurrentTheme mode
 
 class ThemeForm(forms.ModelForm):
     class Meta:
-        fields = ('label', 'logoLink', 'mmColor', 'smmColor', 'hlColor', 'bgColor', 'frameColor','mtColor', 'htColor', 'bdtColor') #edit form
+        fields = ('label', 'font', 'logoLink', 'mmColor', 'smmColor', 'hlColor', 'bgColor', 'frameColor', 'mtColor', 'htColor', 'bdtColor') #edit form
         model = Theme
 
 

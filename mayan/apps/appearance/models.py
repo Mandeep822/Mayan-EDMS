@@ -26,11 +26,16 @@ class Theme(ExtraDataModelMixin, models.Model):
         db_index=True, help_text=_('A short text describing the theme.'),
         max_length=128, unique=True, verbose_name=_('Label')
     )
-    #add color code to model
+    
 
     logoLink = models.CharField(
         db_index=True, help_text=_('Logo link URL.'),
-        max_length=2000, unique=True, verbose_name=_('Logo Link URL')
+        max_length=2000, unique=False, verbose_name=_('Logo Link URL')
+    )
+
+    font =models.CharField(
+        db_index=True, help_text=_('Font name in google font.'),
+        max_length=2000, unique=False, verbose_name=_('Font')
     )
 
     mmColor = RGBColorField(
@@ -115,10 +120,33 @@ class Theme(ExtraDataModelMixin, models.Model):
         bgColor = self.bgColor
         bdtColor = self.bdtColor
         frameColor = self.frameColor
+        font = self.font
         
         css = f"""
 
-        /* First Main menu color */
+        /* Font */
+
+        * {{
+            font-family: {font}, sans-serif;
+        }}
+
+        #content-title{{
+            font-family: {font}, sans-serif;
+        }}
+
+        .col-xs-12 h4{{
+            font-family: {font}, sans-serif;
+        }}
+        
+        .content h2.title{{
+            font-family: {font}, sans-serif;
+        }}
+                
+        .modal-header h4.modal-title{{
+            font-family: {font}, sans-serif;
+        }}
+        
+        /* First Main menu color */ 
         
         .container-fluid {{
             background-color: {mmColor};
