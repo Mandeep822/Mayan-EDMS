@@ -140,8 +140,7 @@ def appearance_get_fonts():
     )
 
     try:
-        currentFontStylesheet = CurrentTheme.objects.first().theme.font
-        currentFontStylesheet = currentFontStylesheet.replace(' ','+')
+        currentFontStylesheet = CurrentTheme.objects.first().theme.font.replace(' ','+')
     except:
         return ''
     
